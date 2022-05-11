@@ -13,13 +13,14 @@ class Webhook extends ResourceController
     public function index()
     {
         $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
+        $data = $this->request->getPostGet(null);
         if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH" or true) {
             //Return it in response header
             header("X-AdobeSign-ClientId:$clientid");
             header("HTTP/1.1 200 OK"); // default value
             header("Content-Type: application/json");
             $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "a") :  fopen(WRITEPATH . "logs/events.txt", "w");
-            $text = sprintf("time: %s - success \n", date("Y-m-d H:i:s"));
+            $text = sprintf("time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($data));
             fwrite($logFile, $text);
             fclose($logFile);
             $body = array('xAdobeSignClientId' => $clientid);
@@ -40,13 +41,14 @@ class Webhook extends ResourceController
     public function create()
     {
         $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
+        $data = $this->request->getPostGet(null);
         if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH" or true) {
             //Return it in response header
             header("X-AdobeSign-ClientId:$clientid");
             header("HTTP/1.1 200 OK"); // default value
             header("Content-Type: application/json");
             $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "a") :  fopen(WRITEPATH . "logs/events.txt", "w");
-            $text = sprintf("time: %s - success \n", date("Y-m-d H:i:s"));
+            $text = sprintf("time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($data));
             fwrite($logFile, $text);
             fclose($logFile);
             $body = array('xAdobeSignClientId' => $clientid);
