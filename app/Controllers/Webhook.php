@@ -23,7 +23,7 @@ class Webhook extends ResourceController
             fwrite($logFile, $text);
             fclose($logFile);
             $body = array('xAdobeSignClientId' => $clientid);
-            $this->respond($body, 200);
+            return $this->respond($body, 200);
         }
     }
 
@@ -50,7 +50,7 @@ class Webhook extends ResourceController
             fwrite($logFile, $text);
             fclose($logFile);
             $body = array('xAdobeSignClientId' => $clientid);
-            $this->respond($body, 200);
+            return $this->respond($body, 200);
         }
     }
 
