@@ -13,7 +13,7 @@ class Webhook extends ResourceController
     public function index()
     {
         $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
-        $data = $this->request->getPostGet(null);
+        $data = json_decode(file_get_contents('php://input'), true);
         if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH" or true) {
             //Return it in response header
             header("X-AdobeSign-ClientId:$clientid");
@@ -41,7 +41,7 @@ class Webhook extends ResourceController
     public function create()
     {
         $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
-        $data = $this->request->getPostGet(null);
+        $data = json_decode(file_get_contents('php://input'), true);
         if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH" or true) {
             //Return it in response header
             header("X-AdobeSign-ClientId:$clientid");
