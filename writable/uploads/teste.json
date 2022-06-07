@@ -1,0 +1,77 @@
+{
+    "webhookId": "CBJCHBCAABAA22dYDs-3nBZmRTY8JfPD8PjeVoQUuMRW",
+    "webhookName": "Produsol Webook",
+    "webhookNotificationId": "CBJCHBCAABAAjnpvSKqXd8RE8X8dHhrYNgq0WubWa1bD",
+    "webhookUrlInfo": {
+        "url": "https:\/\/webhook-esign.herokuapp.com\/Webhook"
+    },
+    "webhookScope": "ACCOUNT",
+    "webhookNotificationApplicableUsers": [
+        {
+            "id": "CBJCHBCAABAAy1RFbYTthpDwqCzPFIiMGYtXnReLvu7T",
+            "email": "joao.sebastiao@grupoprodusol.com",
+            "role": "SENDER",
+            "payloadApplicable": true
+        }
+    ],
+    "event": "AGREEMENT_RECALLED",
+    "eventDate": "2022-05-30T15:08:48Z",
+    "eventResourceType": "agreement",
+    "participantUserId": "CBJCHBCAABAAy1RFbYTthpDwqCzPFIiMGYtXnReLvu7T",
+    "participantUserEmail": "joao.sebastiao@grupoprodusol.com",
+    "actingUserId": "CBJCHBCAABAAy1RFbYTthpDwqCzPFIiMGYtXnReLvu7T",
+    "actingUserEmail": "joao.sebastiao@grupoprodusol.com",
+    "agreement": {
+        "id": "CBJCHBCAABAA1YKMTJqCmUR4MoFC4MWEMZk8dKZOgO2r",
+        "name": "[DEMO USE ONLY] Relatorio de Teste",
+        "signatureType": "ESIGN",
+        "status": "CANCELLED",
+        "documentVisibilityEnabled": false,
+        "createdDate": "2022-04-13T15:03:41Z",
+        "locale": "en_US",
+        "senderEmail": "joao.sebastiao@grupoprodusol.com",
+        "participantSetsInfo": {
+            "participantSets": [
+                {
+                    "memberInfos": [
+                        {
+                            "id": "CBJCHBCAABAA0H7b8KghXBNub3-FyBUjUEnGw7UOjz9N",
+                            "email": "joao.sebastiao@grupoprodusol.com",
+                            "company": "Produsol",
+                            "name": "Jo\u00e3o Sebasti\u00e3o",
+                            "status": "ACTIVE"
+                        }
+                    ],
+                    "order": 1,
+                    "role": "SIGNER",
+                    "status": "CANCELLED",
+                    "id": "CBJCHBCAABAAMjCKTZP4eT4cbrWsJFXXvsz2Ev_-hL-N"
+                },
+                {
+                    "memberInfos": [
+                        {
+                            "id": "CBJCHBCAABAA8FRi0x6Q6MJcHH1LErW6ApMNy6gZomSw",
+                            "email": "carvalho.henda@gmail.com",
+                            "name": "Henda Mendes de Carvalho",
+                            "status": "ACTIVE"
+                        }
+                    ],
+                    "order": 2,
+                    "role": "SIGNER",
+                    "status": "CANCELLED",
+                    "id": "CBJCHBCAABAAMK36JMcUQpsx7j6ci17uDd8oQxlagheH"
+                }
+            ]
+        },
+        "documentsInfo": {
+            "documents": [
+                {
+                    "id": "3AAABLblqZhBLWX63NZS59K5WSMHHNlOzFs7u8BWRx2byWVkBNt7ZT2nTK1yxmMK3K_it8sx06H0ZM38l-4a5LRk0X1HwBCg-",
+                    "numPages": 2,
+                    "mimeType": "application\/pdf",
+                    "name": "Generated document (3).pdf"
+                }
+            ]
+        }
+    }
+}
