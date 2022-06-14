@@ -28,4 +28,6 @@ function curl_post_async($url, $params)
 
     fwrite($fp, $out);
     fclose($fp);
+    $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "+a") :  fopen(WRITEPATH . "logs/events.txt", "w+");
+    $text = sprintf("Success time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($params));
 }
