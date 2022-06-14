@@ -30,8 +30,10 @@ class Webhook extends ResourceController
 
     public function show($id = null)
     {
+        echo 'Logs:<br><pre>';
 
         echo readfile(WRITEPATH . "logs/events.txt");
+        echo '</pre>';
     }
 
     public function new()
@@ -49,7 +51,7 @@ class Webhook extends ResourceController
             header("Content-Type: application/json");
 
             curl_post_async("http://92.204.138.167:8484/esign/webhook/receiver", $data);
-            
+
             $body = array('xAdobeSignClientId' => $clientid);
             return $this->respond($body, 200);
         }
