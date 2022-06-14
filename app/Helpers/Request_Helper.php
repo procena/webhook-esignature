@@ -15,9 +15,13 @@ function curl_post_async($url, $params)
     );
 
     if (!$fp) {
+        print_r($fp);
         //Perform whatever logging you want to have happen b/c this call failed!    
         $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "+a") :  fopen(WRITEPATH . "logs/events.txt", "w");
         $text = sprintf("Erro time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($params));
+        fwrite($logFile, $text);
+        fclose($logFile);
+        return false;
     }
     $out = "POST " . $parts['path'] . " HTTP/1.1\r\n";
     $out .= "Host: " . $parts['host'] . "\r\n";
@@ -28,6 +32,9 @@ function curl_post_async($url, $params)
 
     fwrite($fp, $out);
     fclose($fp);
-    $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "+a") :  fopen(WRITEPATH . "logs/events.txt", "w+");
+    $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "+a") :  fopen(WRITEPATH . "logs/events.txt", "w");
     $text = sprintf("Success time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($params));
+    fwrite($logFile, $text);
+    fclose($logFile);
+    return true;
 }

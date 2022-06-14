@@ -8,6 +8,7 @@ class Webhook extends ResourceController
 {
     public function __construct()
     {
+        helper('request');
     }
 
     public function index()
@@ -15,16 +16,19 @@ class Webhook extends ResourceController
         $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
         $data = json_decode(file_get_contents('php://input'), true);
         if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH" or true) {
-            //Return it in response header
-            header("X-AdobeSign-ClientId:$clientid");
-            header("HTTP/1.1 200 OK"); // default value
-            header("Content-Type: application/json");
-            $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "a") :  fopen(WRITEPATH . "logs/events.txt", "w");
-            $text = sprintf("time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($data));
-            fwrite($logFile, $text);
-            fclose($logFile);
-            $body = array('xAdobeSignClientId' => $clientid);
-            return $this->respond($body, 200);
+            $clientid = $_SERVER['HTTP_X_ADOBESIGN_CLIENTID'];
+            $data = json_decode(file_get_contents('php://input'), true);
+            if ($clientid == "CBJCHBCAABAAJdfJuT2XEsqkCULtOiBOv8F5Zhdc3_AH") {
+                //Return it in response header
+                header("X-AdobeSign-ClientId:$clientid");
+                header("HTTP/1.1 200 OK"); // default value
+                header("Content-Type: application/json");
+
+                $ctrl = curl_post_async("http://92.204.138.167:8484/esign/webhook/receiver", $data);
+
+                $body = array('xAdobeSignClientId' => $clientid, 'status' => ($ctrl ? 'success' : 'error'));
+                return $this->respond($body, 200);
+            }
         }
     }
 
@@ -50,9 +54,9 @@ class Webhook extends ResourceController
             header("HTTP/1.1 200 OK"); // default value
             header("Content-Type: application/json");
 
-            curl_post_async("http://92.204.138.167:8484/esign/webhook/receiver", $data);
+            $ctrl = curl_post_async("http://92.204.138.167:8484/esign/webhook/receiver", $data);
 
-            $body = array('xAdobeSignClientId' => $clientid);
+            $body = array('xAdobeSignClientId' => $clientid, 'status' => ($ctrl ? 'success' : 'error'));
             return $this->respond($body, 200);
         }
     }
