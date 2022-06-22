@@ -25,12 +25,14 @@ function curl_post_async($url, $params)
     }
     $out = "POST " . $parts['path'] . " HTTP/1.1\r\n";
     $out .= "Host: " . $parts['host'] . "\r\n";
-    $out .= "Content-Type: application/x-www-form-urlencoded\r\n";
+    $out .= "Content-Type: application/json\r\n";
     $out .= "Content-Length: " . strlen($post_string) . "\r\n";
     $out .= "Connection: Close\r\n\r\n";
     if (isset($post_string)) $out .= $post_string;
 
-    fwrite($fp, $out);
+    echo 'ctrl:' . fwrite($fp, $out);
+
+    print_r($out);
     fclose($fp);
     $logFile = is_file(WRITEPATH . "logs/events.txt") ? fopen(WRITEPATH . "logs/events.txt", "+a") :  fopen(WRITEPATH . "logs/events.txt", "w");
     $text = sprintf("Success time: %s - data: %s \n", date("Y-m-d H:i:s"), json_encode($params));
